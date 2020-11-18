@@ -1,13 +1,15 @@
 <template>
   <div>
-    <el-table :data="list" style="width: 100%">
-      <el-table-column prop="id" label="规格编号" width="180"></el-table-column>
-      <el-table-column prop="specsname" label="规格名称" width="180"></el-table-column>
-      <el-table-column label="规格属性">
-        <template slot-scope="scope" v-if="JSON.parse(scope.row.attrs)">
-          <el-tag v-for="item in JSON.parse(scope.row.attrs)" :key="item">{{item}}</el-tag>
+    <el-table :data="list" style="width: 100%" row-key="id">
+      <el-table-column prop="id" label="编号" sortable></el-table-column>
+      <el-table-column prop="title" label="轮播图标题" sortable></el-table-column>
+
+      <el-table-column label="图片" sortable>
+        <template slot-scope="scope">
+          <img :src="$imgPre+scope.row.img" />
         </template>
       </el-table-column>
+
       <el-table-column label="状态">
         <template slot-scope="scope">
           <el-button type="primary" v-if="scope.row.status===1">启用</el-button>
@@ -26,23 +28,28 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { reqspecsdelete } from "../../../utils/http";
 import { successAlert } from "../../../utils/alert";
+import {reqbannerdelete} from '../../../utils/http'
 export default {
   computed: {
     ...mapGetters({
-      list: "specs/list",
+      list: "banner/list",
     }),
   },
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      reqList:'banner/reqList'
+    }),
     edit(id) {
       this.$emit("edit", id);
     },
     del(id) {
-      reqspecsdelete(id).then((res) => {
-        successAlert(res.data.msg);
-        this.$emit("init");
+      console.log(id);
+      reqbannerdelete(id).then((res) => {
+        if (res.data.code == 200) {
+          successAlert(res.data.msg);
+          this.reqList()
+        }
       });
     },
   },
@@ -50,5 +57,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+img {
+  width: 80px;
+  height: 80px;
+}
 </style>

@@ -2,6 +2,9 @@ import Axios from 'axios'
 import qs from 'qs'
 import { errorAlert } from "./alert"
 import Vue from "vue"
+import store from "../store"
+import router from "../router"
+
 
 
 
@@ -27,8 +30,8 @@ Axios.interceptors.response.use(res => {
     if (res.data.code !== 200) {
         errorAlert(res.data.msg)
     }
-    if(res.data.msg==="登录已过期或访问权限受限"){
-        store.dispatch("changeUser",{})
+    if (res.data.msg === "登录已过期或访问权限受限") {
+        store.dispatch("changeUser", {})
         router.push("/login")
     }
     return res
@@ -329,7 +332,7 @@ export const reqspecsadd = (obj) => {
     return Axios({
         url: baseUrl + "/api/specsadd",
         method: "post",
-        data:qs.stringify(obj) 
+        data: qs.stringify(obj)
     })
 }
 
@@ -338,7 +341,7 @@ export const reqspecsedit = (obj) => {
     return Axios({
         url: baseUrl + "/api/specsedit",
         method: "post",
-        data:qs.stringify(obj) 
+        data: qs.stringify(obj)
     })
 }
 
@@ -347,11 +350,90 @@ export const reqspecsdelete = (id) => {
     return Axios({
         url: baseUrl + "/api/specsdelete",
         method: "post",
-        data:qs.stringify({id:id}) 
+        data: qs.stringify({ id: id })
     })
 }
 
-//===========商品分类接口===================
+//===========轮播图接口===================
+//列表
+export const reqbannerlist = () => {
+    return Axios({
+        url: baseUrl + "/api/bannerlist",
+        method: "get"
+    })
+}
+
+//添加
+export const reqbanneradd = (obj) => {
+    let d = new FormData()
+    for (let i in obj) {
+        d.append(i, obj[i])
+    }
+    return Axios({
+        url: baseUrl + "/api/banneradd",
+        method: "post",
+        data: d
+    })
+}
+
+//一条
+export const reqbannerinfo = (id) => {
+    return Axios({
+        url: baseUrl + "/api/bannerinfo",
+        method: "get",
+        params: { id: id }
+    })
+}
+
+//修改
+export const reqbanneredit = (obj) => {
+    let d = new FormData()
+    for (let i in obj) {
+        d.append(i, obj[i])
+    }
+    return Axios({
+        url: baseUrl + "/api/banneredit",
+        method: "post",
+        data: d
+    })
+}
+
+//删除
+export const reqbannerdelete = (id) => {
+    return Axios({
+        url: baseUrl + "/api/bannerdelete",
+        method: "post",
+        data: qs.stringify({ id: id })
+    })
+}
+
+//===========商品列表接口===================
+//总数
+export const reqgoodscount = () => {
+    return Axios({
+        url: baseUrl + "/api/goodscount",
+        method: "get",
+    })
+}
+
+//列表分页
+export const reqgoodslist = (obj) => {
+    return Axios({
+        url: baseUrl + "/api/goodslist",
+        method: "get",
+        params:obj
+    })
+}
+
+
+
+
+
+
+
+
+
+//===========秒杀活动接口===================
 //列表
 export const reqsecklist = () => {
     return Axios({

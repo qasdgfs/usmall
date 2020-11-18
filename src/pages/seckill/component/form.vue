@@ -8,18 +8,18 @@
           </el-form-item>
 
           <el-form-item label="一级分类" label-width="80px">
-            <el-select v-model="form.title" placeholder="请选择">
-              <el-option label="顶级菜单" :value="0"></el-option>
+            <el-select v-model="form.first_cateid" placeholder="请选择">
+              <el-option label="内容" :value="0"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="二级分类" label-width="80px">
-            <el-select v-model="form.title" placeholder="请选择">
-              <el-option label="顶级菜单" :value="0"></el-option>
+            <el-select v-model="form.second_cateid" placeholder="请选择">
+              <el-option label="内容" :value="0"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="商品" label-width="80px">
             <el-select v-model="form.title" placeholder="请选择">
-              <el-option label="顶级菜单" :value="0"></el-option>
+              <el-option label="内容" :value="0"></el-option>
             </el-select>
           </el-form-item>
 
@@ -44,7 +44,13 @@ export default {
   data() {
     return {
       form: {
-        title: "haha",
+        title: "",
+        begintime: "",
+        endtime: "",
+        first_cateid: "",
+        second_cateid: "",
+        goodsid: "",
+        status: "",
       },
     };
   },
@@ -57,7 +63,9 @@ export default {
       this.info.isshow = false;
     },
     empty() {},
-    add() {},
+    add() {
+
+    },
     getOne() {},
     update() {},
   },

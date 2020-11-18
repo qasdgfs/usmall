@@ -14,7 +14,7 @@ export default {
   data(){
     return{
       info:{
-        isshow:true,
+        isshow:false,
         title:'添加秒杀'
       }
     }
@@ -27,7 +27,10 @@ export default {
       reqList:'seck/reqList'
     }),
     willAdd(){
-      
+      this.info={
+        isshow:true,
+        title:'添加秒杀'
+      }
     }
   },
   components:{
