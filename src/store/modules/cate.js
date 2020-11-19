@@ -1,4 +1,4 @@
-import { reqCatelist} from '../../utils/http'
+import { reqCatelist } from '../../utils/http'
 
 const state = {
     list: [],

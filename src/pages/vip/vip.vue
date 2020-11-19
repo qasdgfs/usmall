@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list :list='list' @edit='edit'></v-list>
-    <v-form ref='form' :info='info'></v-form>
+    <v-form ref='form' :info='info' @init='init'></v-form>
   </div>
 </template>
 

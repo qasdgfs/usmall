@@ -425,8 +425,49 @@ export const reqgoodslist = (obj) => {
     })
 }
 
+//添加
+export const reqgoodsadd = (obj) => {
+    let d=new FormData()
+    for(let i in obj){
+        d.append(i,obj[i])
+    }
+    return Axios({
+        url: baseUrl + "/api/goodsadd",
+        method: "post",
+        data:d
+    })
+}
 
+//一条
+export const reqgoodsinfo = (id) => {
+    return Axios({
+        url: baseUrl + "/api/goodsinfo",
+        method: "get",
+        params:{id:id}
+    })
+}
 
+//修改
+export const reqgoodsedit = (obj) => {
+    let d=new FormData()
+    for(let i in obj){
+        d.append(i,obj[i])
+    }
+    return Axios({
+        url: baseUrl + "/api/goodsedit",
+        method: "post",
+        data:d
+    })
+}
+
+//删除
+export const reqgoodsdelete = (id) => {
+    return Axios({
+        url: baseUrl + "/api/goodsdelete",
+        method: "post",
+        data:qs.stringify({id:id})
+    })
+}
 
 
 
@@ -435,9 +476,50 @@ export const reqgoodslist = (obj) => {
 
 //===========秒杀活动接口===================
 //列表
-export const reqsecklist = () => {
+export const reqSecksList = (p) => {
     return Axios({
-        url: baseUrl + "/api/secklist",
         method: "get",
+        url: baseUrl + "/api/secklist",
+        params:p,
+    })
+}
+
+//一条
+export const reqSecksDetail = (id) => {
+    return Axios({
+        method: "get",
+        url: baseUrl + "/api/seckinfo",
+        params:{id}
+    })
+}
+
+
+//删除
+export const reqSecksDel = (id) => {
+    return Axios({
+        method: "post",
+        url: baseUrl + "/api/seckdelete",
+        data: qs.stringify({id})
+    })
+}
+
+
+//添加
+export const reqSecksAdd = (secks) => {
+    console.log(secks);
+    return Axios({
+        method: "post",
+        url: baseUrl + "/api/seckadd",
+        data: qs.stringify(secks)
+    })
+}
+
+//修改
+export const reqSecksUpdate = (secks) => {
+    console.log(secks);
+    return Axios({
+        method: "post",
+        url: baseUrl + "/api/seckedit",
+        data: qs.stringify(secks)
     })
 }

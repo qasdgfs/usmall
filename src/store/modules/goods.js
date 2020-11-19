@@ -37,7 +37,7 @@ const actions = {
     },
     changePage(context, page) {
         context.commit('changePage',page)
-        context.commit('reqList')
+        context.dispatch('reqList')
     }
 }
 const getters = {
@@ -45,7 +45,13 @@ const getters = {
         return state.total
     },
     list(state){
-        
+        return state.list
+    },
+    size(state){
+        return state.size
+    },
+    page(state){
+        return state.page
     }
 }
 export default { state, mutations, actions, getters, namespaced: true }

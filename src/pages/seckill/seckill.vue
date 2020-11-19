@@ -1,44 +1,57 @@
 <template>
   <div>
-    <el-button type="primary" @click="willAdd">添加</el-button>
-    <v-list></v-list>
-    <v-form :info='info'></v-form>
+    <el-button type="primary" @click="add()">添加</el-button>
+    <v-list @edit="edit"></v-list>
+    <v-form :info="info" ref="cate"></v-form>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import vList from './component/list'
-import vForm from './component/form'
+import vList from "./component/list.vue";
+import vForm from "./component/form.vue";
+import { mapActions, mapGetters } from "vuex";
+
 export default {
-  data(){
-    return{
-      info:{
-        isshow:false,
-        title:'添加秒杀'
-      }
-    }
-  },
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      Total: "goods/Total",
+      size: "goods/size",
+    }),
+  },
+  data() {
+    return {
+      info: {
+        isShow: false,
+        title: "商品管理添加",
+      },
+    };
+  },
+  components: {
+    vList,
+    vForm,
   },
   methods: {
     ...mapActions({
-      reqList:'seck/reqList'
+      reqList: "goods/reqList",
+      reqTotal: "goods/reqTotal",
+      changPage: "goods/changPage",
     }),
-    willAdd(){
-      this.info={
-        isshow:true,
-        title:'添加秒杀'
-      }
-    }
-  },
-  components:{
-    vForm,
-    vList
+    edit(id) {
+      this.info = {
+        isShow: true,
+        title: "商品管理编辑",
+      };
+      this.$refs.cate.getOne(id);
+    },
+    add() {
+      this.info = {
+        isShow: true,
+        title: "商品管理添加",
+      };
+    },
   },
   mounted() {
-    this.reqList()
+    this.reqTotal();
   },
 };
 </script>

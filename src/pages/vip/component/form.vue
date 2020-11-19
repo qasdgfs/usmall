@@ -71,6 +71,7 @@ export default {
       if (this.form.password) {
         reqMemberedit(this.form).then((res) => {
           successAlert(res.data.msg);
+          this.$emit('init')
         });
       }
       this.cancel();
