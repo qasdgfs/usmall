@@ -2,19 +2,11 @@
   <div>
     <el-dialog :title="info.title" :visible.sync="info.isShow" @closed="close">
       <el-form :model="seck">
-        <el-form-item label="活动名称" label-width="150px">
+        <el-form-item label="活动名称" label-width="80px">
           <el-input v-model="seck.title" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="活动期限" label-width="150px">
-          <!-- <el-date-picker
-            v-model="value1"
-            type="daterange"
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
-            value-format="timestamp"
-          ></el-date-picker>-->
+        <el-form-item label="活动期限" label-width="80px">
 
           <el-date-picker
             v-model="value1"
@@ -27,7 +19,7 @@
           ></el-date-picker>
         </el-form-item>
 
-        <el-form-item label="一级分类" label-width="150px">
+        <el-form-item label="一级分类" label-width="80px">
           <el-select v-model="seck.first_cateid" placeholder="请选择" @change="changeCateid">
             <el-option
               v-for="item in CateList"
@@ -38,7 +30,7 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="二级分类" label-width="150px">
+        <el-form-item label="二级分类" label-width="80px">
           <el-select v-model="seck.second_cateid" placeholder="请选择" @change="changeSecondid">
             <el-option
               v-for="item in secondList"
@@ -49,7 +41,7 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="商品" label-width="150px">
+        <el-form-item label="商品" label-width="80px">
           <el-select v-model="seck.goodsid" placeholder="请选择">
             <el-option
               v-for="item in goodsList"
@@ -60,7 +52,7 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="状态" label-width="150px">
+        <el-form-item label="状态" label-width="80px">
           <el-switch v-model="seck.status" :active-value="1" :inactive-value="2"></el-switch>
         </el-form-item>
       </el-form>
